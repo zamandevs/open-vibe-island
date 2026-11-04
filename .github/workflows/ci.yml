@@ -36,7 +36,17 @@ jobs:
           pip3 install --break-system-packages Pillow
 
       - name: Build and package
+        env:
+          OPEN_ISLAND_BUNDLE_ID: app.openisland.OpenIsland
+          OPEN_ISLAND_VERSION: 1.3.2
+          OPEN_ISLAND_BUILD_NUMBER: 85
         run: zsh scripts/package-app.sh
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: OpenIsland-codex-terminal-discovery
+          path: output/package/Open Island.zip
+          retention-days: 7
 
       # Bundle structure is verified inside package-app.sh itself.
       # No separate verify step needed — the script exits non-zero on
