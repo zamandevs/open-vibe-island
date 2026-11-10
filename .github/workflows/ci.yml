@@ -16,9 +16,8 @@ on:
       - 'investigate/**'
 
 jobs:
-  harness:
-    runs-on: macos-15-arm64
-
+  package-verify:
+    runs-on: macos-15
     steps:
       - uses: actions/checkout@v4
 
@@ -27,11 +26,6 @@ jobs:
 
       - name: Run CI checks
         run: zsh scripts/harness.sh ci
-
-  package-verify:
-    runs-on: macos-15-arm64
-    steps:
-      - uses: actions/checkout@v4
 
       - name: Install dependencies
         run: |
